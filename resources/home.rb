@@ -1,4 +1,5 @@
-
-class SinatraTemplate < Sinatra::Base
-
+class SinatraTemplate
+  get "/" do
+    haml :home
+  end
 end

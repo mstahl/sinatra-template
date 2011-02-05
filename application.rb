@@ -6,8 +6,15 @@ require 'sinatra'
 Dir[File.dirname(__FILE__) + '/lib/*.rb'].each {|file| require file }
 
 class SinatraTemplate < Sinatra::Base     # TODO Change class name
+  configure :development do
+    require 'sinatra/reloader'
+    register Sinatra::Reloader
+    # config.also_reload 'lib/*.rb'
+    # config.also_reload 'resources/*.rb'
+  end
+  
   configure do
-    # Add your configurations here
+    # Put your configurations here.
   end
 
   helpers do
@@ -20,9 +27,9 @@ class SinatraTemplate < Sinatra::Base     # TODO Change class name
     end
   end
   
-  get "/" do
-    haml :home
-  end
+  # get "/" do
+  #   haml :home
+  # end
 end
 
-# Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file }
+Dir[File.dirname(__FILE__) + '/resources/*.rb'].each {|file| require file }
